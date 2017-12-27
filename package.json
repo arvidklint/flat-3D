@@ -1,0 +1,23 @@
+{
+  "name": "flat-3d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvidsat/flat-3D.git"
+  },
+  "author": "Arvid Sätterkvist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvidsat/flat-3D/issues"
+  },
+  "homepage": "https://github.com/arvidsat/flat-3D#readme"
+}
