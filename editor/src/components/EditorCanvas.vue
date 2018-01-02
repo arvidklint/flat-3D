@@ -19,13 +19,12 @@
 import {
   mapActions,
   mapGetters,
-  mapMutations,
 } from 'vuex'
 
 import {
   INCREMENT_LAYER,
   DECREMENT_LAYER,
-  GET_CURRENT_LAYER,
+  GET_CANVAS_LAYER,
   GET_CANVAS_WIDTH,
   GET_CANVAS_HEIGHT,
   INIT_CANVAS,
@@ -38,17 +37,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      currentLayer: GET_CURRENT_LAYER,
+      currentLayer: GET_CANVAS_LAYER,
       width: GET_CANVAS_WIDTH,
       height: GET_CANVAS_HEIGHT,
     }),
   },
   methods: {
-    ...mapMutations([
+    ...mapActions([
       INCREMENT_LAYER,
       DECREMENT_LAYER,
-    ]),
-    ...mapActions([
       INIT_CANVAS,
     ]),
   },
