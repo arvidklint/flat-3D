@@ -21,6 +21,7 @@ import {
 
 export const INIT_VIEWER = 'INIT_VIEWER'
 export const SET_VIEWER_SCALE = 'SET_VIEWER_SCALE'
+export const SET_VIEWER_CONTEXT_SMOOTH = 'SET_VIEWER_CONTEXT_SMOOTH'
 
 export default {
   [INIT_VIEWER]: (store) => {
@@ -28,11 +29,18 @@ export default {
     const context = canvas.getContext('2d')
     store.commit(SET_VIEWER_EDITOR, { canvas })
     store.commit(SET_VIEWER_CONTEXT, { context })
+    store.dispatch(SET_VIEWER_CONTEXT_SMOOTH, { smooth: false })
     store.dispatch(SET_VIEWER_SCALE)
   },
   [SET_VIEWER_SCALE]: (store) => {
     const ctx = store.getters[GET_VIEWER_CONTEXT]
     const scale = store.getters[GET_VIEWER_SCALE]
     ctx.scale(scale, scale)
+  },
+  [SET_VIEWER_CONTEXT_SMOOTH]: (store, payload) => {
+    const ctx = store.getters[GET_VIEWER_CONTEXT]
+    ctx.webkitImageSmoothingEnabled = payload.smooth;
+    ctx.mozImageSmoothingEnabled = payload.smooth;
+    ctx.imageSmoothingEnabled = payload.smooth;
   },
 }

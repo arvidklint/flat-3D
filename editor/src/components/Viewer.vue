@@ -103,7 +103,8 @@ export default {
 
 <style>
 .viewer {
-  background-color: blue;
+  margin: 5px;
+  background-color: #f9f9f9;
 }
 </style>
 
