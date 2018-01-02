@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <EditorViewer />
-    <EditorCanvas />
+    <Viewer />
+    <Editor />
   </div>
 </template>
 
 <script>
-import EditorCanvas from './components/EditorCanvas'
-import EditorViewer from './components/EditorViewer'
+import Editor from './components/Editor'
+import Viewer from './components/Viewer'
 
 export default {
   name: 'app',
   components: {
-    EditorCanvas,
-    EditorViewer,
+    Editor,
+    Viewer,
   },
 }
 </script>

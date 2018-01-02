@@ -5,7 +5,7 @@ import state from './state'
 import getters from './getters'
 import mutations from './mutations'
 
-import canvas from './modules/canvas'
+import editor from './modules/editor'
 import viewer from './modules/viewer'
 
 Vue.use(Vuex)
@@ -15,7 +15,7 @@ const store = new Vuex.Store({
   getters,
   mutations,
   modules: {
-    canvas,
+    editor,
     viewer,
   }
 })

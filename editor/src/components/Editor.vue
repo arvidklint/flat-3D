@@ -3,6 +3,7 @@
     <canvas
       class="editor"
       id="editor-canvas"
+      v-on:click="paint"
       :width="width"
       :height="height"
     ></canvas>
@@ -24,30 +25,38 @@ import {
 import {
   INCREMENT_LAYER,
   DECREMENT_LAYER,
-  GET_CANVAS_LAYER,
-  GET_CANVAS_WIDTH,
-  GET_CANVAS_HEIGHT,
-  INIT_CANVAS,
+  GET_EDITOR_LAYER,
+  GET_EDITOR_WIDTH,
+  GET_EDITOR_HEIGHT,
+  INIT_EDITOR,
 } from '../store'
 
 export default {
-  name: 'editorCanvas',
+  name: 'editor',
   mounted() {
-    this[INIT_CANVAS]()
+    this[INIT_EDITOR]()
   },
   computed: {
     ...mapGetters({
-      currentLayer: GET_CANVAS_LAYER,
-      width: GET_CANVAS_WIDTH,
-      height: GET_CANVAS_HEIGHT,
+      currentLayer: GET_EDITOR_LAYER,
+      width: GET_EDITOR_WIDTH,
+      height: GET_EDITOR_HEIGHT,
     }),
   },
   methods: {
     ...mapActions([
       INCREMENT_LAYER,
       DECREMENT_LAYER,
-      INIT_CANVAS,
+      INIT_EDITOR,
     ]),
+    paint(event) {
+      const mouseX = event.layerX
+      const mouseY = event.layerY
+
+
+
+      // check if mouse is inside image
+    },
   },
 }
 </script>

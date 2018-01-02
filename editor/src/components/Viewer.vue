@@ -17,13 +17,13 @@ import {
 } from 'vuex'
 
 import {
-  GET_CANVAS_WIDTH,
-  GET_CANVAS_HEIGHT,
-  GET_CANVAS_IMAGE,
+  GET_EDITOR_WIDTH,
+  GET_EDITOR_HEIGHT,
+  GET_EDITOR_IMAGE,
   GET_VIEWER_TRANSFORM,
-  GET_VIEWER_CANVAS,
+  GET_VIEWER_EDITOR,
   GET_VIEWER_CONTEXT,
-  GET_CANVAS_LOADED,
+  GET_EDITOR_LOADED,
   GET_VIEWER_DELTA_ROTATION,
   INIT_VIEWER,
   SET_VIEWER_ROTATION,
@@ -32,7 +32,7 @@ import {
 let ticker
 
 export default {
-  name: 'editorViewer',
+  name: 'viewer',
   mounted() {
     this[INIT_VIEWER]()
     ticker = setInterval(() => {
@@ -47,11 +47,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      width: GET_CANVAS_WIDTH,
-      height: GET_CANVAS_HEIGHT,
-      image: GET_CANVAS_IMAGE,
-      canvasLoaded: GET_CANVAS_LOADED,
-      viewerCanvas: GET_VIEWER_CANVAS,
+      width: GET_EDITOR_WIDTH,
+      height: GET_EDITOR_HEIGHT,
+      image: GET_EDITOR_IMAGE,
+      canvasLoaded: GET_EDITOR_LOADED,
+      viewerCanvas: GET_VIEWER_EDITOR,
       viewerContext: GET_VIEWER_CONTEXT,
       transform: GET_VIEWER_TRANSFORM,
       deltaRotation: GET_VIEWER_DELTA_ROTATION,

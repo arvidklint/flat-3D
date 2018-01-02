@@ -8,9 +8,14 @@ export default {
   width: 500,
   height: 500,
   transform: {
-    x: 250,
-    y: 250,
-    width: 64,
-    height: 32,
+    position: {
+      x: 250,
+      y: 250,
+    },
+    size: {
+      width: 64,
+      height: 32,
+    },
+    scale: 1,
   }
 }
