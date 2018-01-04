@@ -1,25 +1,33 @@
-export const GET_EDITOR_CANVAS = 'GET_EDITOR_CANVAS'
-export const GET_EDITOR_CONTEXT = 'GET_EDITOR_CONTEXT'
+export const GET_EDITOR_BASE_CANVAS = 'GET_EDITOR_BASE_CANVAS'
+export const GET_EDITOR_BASE_CONTEXT = 'GET_EDITOR_BASE_CONTEXT'
+export const GET_EDITOR_MODEL_CANVAS = 'GET_EDITOR_MODEL_CANVAS'
+export const GET_EDITOR_MODEL_CONTEXT = 'GET_EDITOR_MODEL_CONTEXT'
 export const GET_EDITOR_LAYER = 'GET_EDITOR_LAYER'
 export const GET_EDITOR_MAX_LAYER = 'GET_EDITOR_MAX_LAYER'
 export const GET_EDITOR_MIN_LAYER = 'GET_EDITOR_MIN_LAYER'
 export const GET_EDITOR_WIDTH = 'GET_EDITOR_WIDTH'
 export const GET_EDITOR_HEIGHT = 'GET_EDITOR_HEIGHT'
 export const GET_EDITOR_LOADED = 'GET_EDITOR_LOADED'
-export const GET_EDITOR_IMAGE = 'GET_EDITOR_IMAGE'
 export const GET_EDITOR_TRANSFORM = 'GET_EDITOR_TRANSFORM'
 export const GET_EDITOR_SIZE = 'GET_EDITOR_SIZE'
 export const GET_EDITOR_POSITION = 'GET_EDITOR_POSITION'
 export const GET_EDITOR_SCALE = 'GET_EDITOR_SCALE'
 export const GET_EDITOR_CANVAS_WIDTH = 'GET_EDITOR_CANVAS_WIDTH'
 export const GET_EDITOR_CANVAS_HEIGHT = 'GET_EDITOR_CANVAS_HEIGHT'
+export const GET_EDITOR_COLOR = 'GET_EDITOR_COLOR'
 
 export default {
-  [GET_EDITOR_CANVAS]: (state) => {
-    return state.canvas
+  [GET_EDITOR_BASE_CANVAS]: (state) => {
+    return state.baseCanvas
   },
-  [GET_EDITOR_CONTEXT]: (state) => {
-    return state.context
+  [GET_EDITOR_BASE_CONTEXT]: (state) => {
+    return state.baseContext
+  },
+  [GET_EDITOR_MODEL_CANVAS]: (state) => {
+    return state.modelCanvas
+  },
+  [GET_EDITOR_MODEL_CONTEXT]: (state) => {
+    return state.modelContext
   },
   [GET_EDITOR_LAYER]: (state) => {
     return state.layer
@@ -57,7 +65,7 @@ export default {
   [GET_EDITOR_LOADED]: (state) => {
     return state.loaded
   },
-  [GET_EDITOR_IMAGE]: (state) => {
-    return state.image
+  [GET_EDITOR_COLOR]: (state) => {
+    return state.color
   },
 }

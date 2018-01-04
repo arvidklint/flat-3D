@@ -19,7 +19,7 @@ import {
 import {
   GET_EDITOR_WIDTH,
   GET_EDITOR_HEIGHT,
-  GET_EDITOR_IMAGE,
+  GET_EDITOR_MODEL_CANVAS,
   GET_VIEWER_TRANSFORM,
   GET_VIEWER_EDITOR,
   GET_VIEWER_CONTEXT,
@@ -49,7 +49,7 @@ export default {
     ...mapGetters({
       width: GET_EDITOR_WIDTH,
       height: GET_EDITOR_HEIGHT,
-      image: GET_EDITOR_IMAGE,
+      modelCanvas: GET_EDITOR_MODEL_CANVAS,
       canvasLoaded: GET_EDITOR_LOADED,
       viewerCanvas: GET_VIEWER_EDITOR,
       viewerContext: GET_VIEWER_CONTEXT,
@@ -83,15 +83,13 @@ export default {
         },
         scale,
       } = this.transform
-
-      const image = this.image
       
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.save()
-      for(let i = 0; i < image.width / width; i++) {
-        ctx.translate(x / scale, y / scale - i) 
+      for (let i = 0; i < this.modelCanvas.width / width; i++) {
+        ctx.translate(x / scale, y / scale - i)
         ctx.rotate(this.rotation)
-        ctx.drawImage(image, width * i, 0, width, height, -width / 2, -height / 2, width, height)
+        ctx.drawImage(this.modelCanvas, width * i, 0, width, height, -width / 2, -height / 2, width, height)
         ctx.rotate(-this.rotation)
         ctx.translate(-x / scale, -y / scale + i)
       }
@@ -107,4 +105,3 @@ export default {
   background-color: #f9f9f9;
 }
 </style>
-
