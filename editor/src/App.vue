@@ -8,12 +8,14 @@
 <script>
 import Editor from './components/Editor'
 import Viewer from './components/Viewer'
+import Tools from './components/Tools'
 
 export default {
   name: 'app',
   components: {
     Editor,
     Viewer,
+    Tools,
   },
 }
 </script>
