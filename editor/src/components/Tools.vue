@@ -12,6 +12,8 @@
         {{ scale * 100 }}%
       <button v-on:click="zoom(1)">+</button>
     </div>
+    <input type="file" id="file-input" v-on:change="loadImage">
+    <a id="save-image" v-on:click="saveImage">Save image</a>
   </div>
 </template>
 
@@ -28,6 +30,8 @@ import {
   GET_EDITOR_MAX_LAYER,
   GET_EDITOR_SCALE,
   SCALE_EDITOR_CANVAS,
+  GET_EDITOR_MODEL_CANVAS,
+  SET_EDITOR_IMAGE,
 } from '../store'
 
 export default {
@@ -37,6 +41,7 @@ export default {
       currentLayer: GET_EDITOR_LAYER,
       maxLayer: GET_EDITOR_MAX_LAYER,
       scale: GET_EDITOR_SCALE,
+      modelCanvas: GET_EDITOR_MODEL_CANVAS,
     })
   },
   methods: {
@@ -44,9 +49,28 @@ export default {
       INCREMENT_LAYER,
       DECREMENT_LAYER,
       SCALE_EDITOR_CANVAS,
+      SET_EDITOR_IMAGE,
     ]),
     zoom: function(scale) {
       this[SCALE_EDITOR_CANVAS]({ scale })
+    },
+    loadImage: function(event) {
+      const input = document.getElementById('file-input')
+      const file = input.files[0]
+      const fr = new FileReader()
+      fr.onload = () => {
+        const image = new Image()
+        image.onload = () => {
+          this[SET_EDITOR_IMAGE]({ image })
+        }
+        image.src = fr.result
+      }
+      fr.readAsDataURL(file)
+    },
+    saveImage: function() {
+      const link = document.getElementById('save-image')
+      link.href = this.modelCanvas.toDataURL()
+      link.download = "model.png"
     },
   },
 }

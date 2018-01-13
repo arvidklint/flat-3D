@@ -17,7 +17,6 @@ import {
 } from './getters'
 
 import {
-  SET_EDITOR_IMAGE_DATA,
   SET_EDITOR_BASE_CANVAS,
   SET_EDITOR_BASE_CONTEXT,
   SET_EDITOR_MODEL_CANVAS,
@@ -33,9 +32,10 @@ export const INCREMENT_LAYER = 'INCREMENT_LAYER'
 export const DECREMENT_LAYER = 'DECREMENT_LAYER'
 export const SCALE_EDITOR_CANVAS = 'SCALE_EDITOR_CANVAS'
 export const SET_EDITOR_PIXEL = 'SET_EDITOR_PIXEL'
+export const SET_EDITOR_IMAGE = 'SET_EDITOR_IMAGE'
 
 export default {
-  [INIT_EDITOR]: (store) => {
+  [INIT_EDITOR]: (store, payload) => {
     const baseCanvas = document.getElementById('editor-canvas')
     const baseContext = baseCanvas.getContext('2d')
     setSmoothContext(baseContext, false)
@@ -44,15 +44,7 @@ export default {
 
     loadImage('./static/sliced-boat.png')
       .then((image) => {
-        const modelCanvas = document.createElement('canvas')
-        const modelContext = modelCanvas.getContext('2d')
-        modelCanvas.width = image.width
-        modelCanvas.height = image.height
-        modelContext.drawImage(image, 0, 0)
-        store.commit(SET_EDITOR_MODEL_CANVAS, { canvas: modelCanvas })
-        store.commit(SET_EDITOR_MODEL_CONTEXT, { context: modelContext })
-        store.commit(SET_EDITOR_LOADED, { loaded: true })
-        store.dispatch(RENDER_EDITOR)
+        store.dispatch(SET_EDITOR_IMAGE, { image })
       }).catch((error) => {
         console.log(error)
       })
@@ -98,6 +90,18 @@ export default {
 
     modelContext.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a / 255})`
     modelContext.fillRect(x + width * layer, y, 1, 1)
+    store.dispatch(RENDER_EDITOR)
+  },
+  [SET_EDITOR_IMAGE]: (store, payload) => {
+    const modelCanvas = document.createElement('canvas')
+    const modelContext = modelCanvas.getContext('2d')
+    const image = payload.image
+    modelCanvas.width = image.width
+    modelCanvas.height = image.height
+    modelContext.drawImage(image, 0, 0)
+    store.commit(SET_EDITOR_MODEL_CANVAS, { canvas: modelCanvas })
+    store.commit(SET_EDITOR_MODEL_CONTEXT, { context: modelContext })
+    store.commit(SET_EDITOR_LOADED, { loaded: true })
     store.dispatch(RENDER_EDITOR)
   },
   [RENDER_EDITOR]: (store) => {
