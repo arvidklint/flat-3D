@@ -14,6 +14,7 @@
     </div>
     <input type="file" id="file-input" v-on:change="loadImage">
     <a id="save-image" v-on:click="saveImage">Save image</a>
+    Set color: <input type="color" id="set-color" v-on:change="setColor">
   </div>
 </template>
 
@@ -21,6 +22,7 @@
 import {
   mapActions,
   mapGetters,
+  mapMutations,
 } from 'vuex'
 
 import {
@@ -32,7 +34,12 @@ import {
   SCALE_EDITOR_CANVAS,
   GET_EDITOR_MODEL_CANVAS,
   SET_EDITOR_IMAGE,
+  SET_EDITOR_COLOR_RGBA,
 } from '../store'
+
+import {
+  hexToRgba,
+} from '../util'
 
 export default {
   name: 'tools',
@@ -42,7 +49,7 @@ export default {
       maxLayer: GET_EDITOR_MAX_LAYER,
       scale: GET_EDITOR_SCALE,
       modelCanvas: GET_EDITOR_MODEL_CANVAS,
-    })
+    }),
   },
   methods: {
     ...mapActions([
@@ -50,6 +57,9 @@ export default {
       DECREMENT_LAYER,
       SCALE_EDITOR_CANVAS,
       SET_EDITOR_IMAGE,
+    ]),
+    ...mapMutations([
+      SET_EDITOR_COLOR_RGBA,
     ]),
     zoom: function(scale) {
       this[SCALE_EDITOR_CANVAS]({ scale })
@@ -71,6 +81,14 @@ export default {
       const link = document.getElementById('save-image')
       link.href = this.modelCanvas.toDataURL()
       link.download = "model.png"
+    },
+    setColor: function(event) {
+      const hex = event.target.value
+      const rgba = hexToRgba(hex)
+      console.log('rgba', rgba)
+      this[SET_EDITOR_COLOR_RGBA]({
+        color: rgba,
+      })
     },
   },
 }
