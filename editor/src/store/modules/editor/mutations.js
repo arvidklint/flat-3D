@@ -7,6 +7,9 @@ export const SET_EDITOR_CANVAS = 'SET_EDITOR_CANVAS'
 export const SET_EDITOR_LOADED = 'SET_EDITOR_LOADED'
 export const SET_EDITOR_SCALE = 'SET_EDITOR_SCALE'
 export const SET_EDITOR_COLOR_RGBA = 'SET_EDITOR_COLOR_RGBA'
+export const SET_EDITOR_TRANSFORM_SIZE = 'SET_EDTIOR_TRANSFORM_SIZE'
+export const SET_EDITOR_MAX_LAYER = 'SET_EDITOR_MAX_LAYER'
+export const SET_EDTIOR_LAYER = 'SET_EDTIOR_LAYER'
 
 export default {
   [CHANGE_EDITOR_LAYER_BY]: (state, payload) => {
@@ -35,5 +38,15 @@ export default {
   },
   [SET_EDITOR_COLOR_RGBA]: (state, payload) => {
     state.color = payload.color
+  },
+  [SET_EDITOR_TRANSFORM_SIZE]: (state, payload) => {
+    state.transform.size.width = payload.width
+    state.transform.size.height = payload.height
+  },
+  [SET_EDTIOR_LAYER]: (state, payload) => {
+    state.layer = payload.layer
+  },
+  [SET_EDITOR_MAX_LAYER]: (state, payload) => {
+    state.maxLayer = payload.maxLayer
   },
 }

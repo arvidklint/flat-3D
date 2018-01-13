@@ -23,7 +23,10 @@ import {
   SET_EDITOR_MODEL_CONTEXT,
   SET_EDITOR_LOADED,
   SET_EDITOR_SCALE,
+  SET_EDITOR_TRANSFORM_SIZE,
   CHANGE_EDITOR_LAYER_BY,
+  SET_EDITOR_MAX_LAYER,
+  SET_EDTIOR_LAYER,
 } from './mutations'
 
 export const INIT_EDITOR = 'INIT_EDITOR'
@@ -99,9 +102,18 @@ export default {
     modelCanvas.width = image.width
     modelCanvas.height = image.height
     modelContext.drawImage(image, 0, 0)
+    const {
+      size: {
+        width: transformWidth,
+      }
+    } = store.getters[GET_EDITOR_TRANSFORM]
     store.commit(SET_EDITOR_MODEL_CANVAS, { canvas: modelCanvas })
     store.commit(SET_EDITOR_MODEL_CONTEXT, { context: modelContext })
     store.commit(SET_EDITOR_LOADED, { loaded: true })
+    store.commit(SET_EDTIOR_LAYER, { layer: 0 })
+    store.commit(SET_EDITOR_MAX_LAYER, {
+      maxLayer: image.width / transformWidth - 1,
+    })
     store.dispatch(RENDER_EDITOR)
   },
   [RENDER_EDITOR]: (store) => {

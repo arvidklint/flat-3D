@@ -21,6 +21,7 @@ import {
   GET_EDITOR_HEIGHT,
   GET_EDITOR_MODEL_CANVAS,
   GET_VIEWER_TRANSFORM,
+  GET_EDITOR_TRANSFORM,
   GET_VIEWER_EDITOR,
   GET_VIEWER_CONTEXT,
   GET_EDITOR_LOADED,
@@ -54,6 +55,7 @@ export default {
       viewerCanvas: GET_VIEWER_EDITOR,
       viewerContext: GET_VIEWER_CONTEXT,
       transform: GET_VIEWER_TRANSFORM,
+      editorTransform: GET_EDITOR_TRANSFORM,
       deltaRotation: GET_VIEWER_DELTA_ROTATION,
     })
   },
@@ -77,12 +79,15 @@ export default {
           x,
           y,
         },
+        scale,
+      } = this.transform
+
+      const {
         size: {
           width,
           height,
-        },
-        scale,
-      } = this.transform
+        }
+      } = this.editorTransform
       
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.save()
